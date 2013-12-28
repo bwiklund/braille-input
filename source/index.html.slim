@@ -1,2 +1,6 @@
-h1 Hello world
-p Lorem ipsum Consectetur aliquip sit est.
+div ng-app="brailleTap" multi-touch=""
+  h1 Multitouch
+  p Touches: {{touches.length}}
+  ul
+    li ng-repeat="touch in touches"
+      |{{touch.pageX}}, {{touch.pageY}}
