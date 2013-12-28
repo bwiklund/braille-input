@@ -12,7 +12,21 @@ app.directive 'multiTouch', ->
       false
 
 
-app.directive 'brailleInput', ($parse) ->
+# a bitwise mapping of inputs to letters.
+#
+# order is:
+#
+# 1 2
+# 3 4
+# 5 6
+app.value 'braileMapping',
+  0b000000: null
+  0b000001: 'a'
+  0b000011: 'b'
+  0b000101: 'c'
+
+
+app.directive 'brailleInput', ($parse,braileMapping) ->
   link: (scope,el,attrs) ->
 
     regions = null
@@ -41,15 +55,16 @@ app.directive 'brailleInput', ($parse) ->
     el.on 'touchend', (e) ->
       if e.touches.length == 0 # all fingers up
         el.find('*').removeClass 'active'
-        console.log regions
-        scope.$apply -> fn scope, $letter: 'a'
+        bits = 0
+        bits |= r << i for r,i in regions
+        letter = braileMapping[ bits ] || ''
+        scope.$apply -> fn scope, $letter: letter
         resetRegions()
 
 
 app.controller 'MainCtrl', ($scope) ->
   $scope.message = ''
   $scope.addLetter = (letter) ->
-    console.log 'fuck'
     $scope.message += letter
 
 
