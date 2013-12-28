@@ -1,7 +1,7 @@
-div ng-app="brailleTap"
+div ng-app="brailleTap" ng-controller="MainCtrl"
   h1 Multitouch
-  p Touches: {{touches.length}}
-  div braille-input=""
+  textarea ng-model="message"
+  div braille-input="" on-letter="addLetter($letter)"
     div braille-region="0"
     div braille-region="1"
     div braille-region="2"
