@@ -1,6 +1,10 @@
-div ng-app="brailleTap" multi-touch=""
+div ng-app="brailleTap"
   h1 Multitouch
   p Touches: {{touches.length}}
-  ul
-    li ng-repeat="touch in touches"
-      |{{touch.pageX}}, {{touch.pageY}}
+  div braille-input=""
+    div braille-region="0"
+    div braille-region="1"
+    div braille-region="2"
+    div braille-region="3"
+    div braille-region="4"
+    div braille-region="5"
