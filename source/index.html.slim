@@ -1,5 +1,4 @@
 div ng-app="brailleTap" ng-controller="MainCtrl"
-  h1 Multitouch
   textarea ng-model="message"
   div braille-input="" on-letter="addLetter($letter)"
     div braille-region="0"
@@ -8,5 +7,5 @@ div ng-app="brailleTap" ng-controller="MainCtrl"
     div braille-region="3"
     div braille-region="4"
     div braille-region="5"
-    .spacebar SPACE
-    .delete DELETE
+  .spacebar ng-click="addLetter(' ')" SPACE
+  .delete ng-click="deleteKey()" DELETE

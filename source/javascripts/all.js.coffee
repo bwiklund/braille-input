@@ -20,6 +20,7 @@ app.directive 'multiTouch', ->
 # 3 4
 # 5 6
 app.value 'braileMapping',
+  0b000000: ' '
   0b000001: 'a'
   0b000011: 'b'
   0b000101: 'c'
@@ -86,8 +87,9 @@ app.directive 'brailleInput', ($parse,braileMapping) ->
 
 app.controller 'MainCtrl', ($scope) ->
   $scope.message = ''
-  $scope.addLetter = (letter) ->
-    $scope.message += letter
+  $scope.addLetter = (letter) -> $scope.message += letter
+  $scope.deleteKey = -> $scope.message = $scope.message[...-1]
+  $scope.spaceKey = -> $scope.message += "_"
 
 
 # app.directive 'brailleRegion', ->
